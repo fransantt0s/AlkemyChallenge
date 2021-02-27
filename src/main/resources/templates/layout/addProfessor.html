@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Add Professor</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <section th:fragment="addProfessor">
+        <div id="addProfessor" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title" th:text="#{action.add}">Add Professor</h5>
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{/saveProfessor}" th:object="${professor}"
+                          method="POST" class="was-validated">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" th:text="#{name}">Name</label>
+                                <input type="text" class="form-control" name="name" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" th:text="#{lastName}">Last Name</label>
+                                <input type="text" class="form-control" name="lastName" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="active" th:text="#{professor.active}">Active</label>
+                                <input type="number" class="form-control" name="active" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="dni" th:text="#{dni}">Dni</label>
+                                <input type="number" class="form-control" name="dni" required="true" step="any">
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{action.add}">Save</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

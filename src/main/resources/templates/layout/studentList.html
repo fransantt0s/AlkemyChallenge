@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Students</title>
+    <meta charset="UTF-8"/>
+</head>
+    <section th:fragment="studentList" id="studentList">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>[[#{student.list}]]</h4>
+                        </div>
+                        <div th:if="${students != null and !students.empty}">
+                            <table class="table table-stryped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th th:text="#{name}">Name</th>
+                                    <th th:text="#{lastName}">Last Name</th>
+                                    <th th:text="#{student.fileNumber}">File Number</th>
+                                    <th th:text="#{dni}">Dni</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="student, countStudents : ${students}">
+                                    <td>[[${countStudents.count}]]</td>
+                                    <td>[[${student.name}]]</td>
+                                    <td>[[${student.lastName}]]</td>
+                                    <td>[[${student.fileNumber}]]</td>
+                                    <td> [[${student.dni}]]</td>
+                                    <td>
+                                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editStudent/} + ${student.idStudent}"
+                                           class="btn btn-secondary">
+                                            <i class="fas fa-angle-double-right"></i> [[#{action.edit}]]
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/deleteStudent(idStudent=${student.idStudent})}"
+                                           class="btn btn-dark">
+                                            <i class="fas fa-angle-double-right"></i> [[#{action.delete}]]
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center p-2" th:if="${students == null or students.empty}">
+                            <span th:text="#{empty-List}">Empty List</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<body>
+
+</body>
+</html>

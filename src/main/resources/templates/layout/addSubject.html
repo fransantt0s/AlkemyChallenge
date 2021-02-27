@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Add Subject</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="addSubject">
+            <div id="addSubject" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{action.add}">Add Subject</h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div> 
+                        <form th:action="@{/save}" th:object="${subject}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name" th:text="#{name}">Name</label>
+                                    <input type="text" class="form-control" name="name" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="time" th:text="#{subject.time}">Time</label>
+                                    <input type="text" class="form-control" name="Time" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="professor" th:text="#{subject.professor}">Professor</label>
+                                    <input type="text" class="form-control" name="professor" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="max_Quota" th:text="#{subject.max_quota}">Max_Quota</label>
+                                    <input type="number" class="form-control" name="max_Quota" required="true" step="any">
+                                </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{action.add}">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

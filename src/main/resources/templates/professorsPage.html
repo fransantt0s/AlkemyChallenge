@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/page :: head">
+    <title>Home</title>
+</head>
+<body>
+
+    <header th:replace="layout/page :: header"></header>
+    <section th:replace="layout/addButtonProfessor :: addButtonProfessor"></section>
+    <section th:replace="layout/addProfessor :: addProfessor"></section>
+    <section th:replace="layout/professorList :: professorList"></section>
+    <footer th:replace="layout/page :: footer"></footer>
+</body>
+</html>
